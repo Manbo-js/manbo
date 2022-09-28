@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jam-Manbo/manbo.js.git"
+    "url": "git+https://github.com/Manbo-js/manbo.git"
   },
   "keywords": [
     "api",
@@ -39,7 +39,7 @@
   "author": "Jam-Manbo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Jam-Manbo/manbo.js/issues"
+    "url": "https://github.com/Manbo-js/manbo/issues"
   },
   "dependencies": {
     "ws": "^8.2.3"

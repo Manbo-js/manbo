@@ -1,6 +1,5 @@
 .DS_Store
 .vscode
-.idea
 docgen
 docs
 node_modules
