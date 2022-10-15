@@ -345,13 +345,22 @@ declare namespace Eris {
     userLimit?: number;
   }
   interface EditChannelOptions extends Omit<CreateChannelOptions, "reason"> {
+    appliedTags?: Array<string>;
     archived?: boolean;
     autoArchiveDuration?: AutoArchiveDuration;
+    availableTags?: Array<Omit<ForumTag, "id"> & {
+      id?: string
+    }>
     defaultAutoArchiveDuration?: AutoArchiveDuration;
+    defaultReactionEmoji?: ForumEmoji | null;
+    defaultSortOrder?: Constants["ThreadSortOrders"];
+    defaultThreadRateLimitPerUser?: number;
+    flags?: number;
     invitable?: boolean;
     locked?: boolean;
     name?: string;
     rtcRegion?: string | null;
+    type?: Constants["ChannelTypes"]["GUILD_TEXT"] | Constants["ChannelTypes"]["GUILD_NEWS"];
     videoQualityMode?: VideoQualityMode;
   }
   interface EditChannelPositionOptions {
@@ -1568,6 +1577,26 @@ declare namespace Eris {
     locked: boolean;
   }
 
+  export interface RawForumTag {
+    emoji_id: string | null;
+    emoji_name: string | null;
+    id: string;
+    moderated: boolean;
+    name: string;
+  }
+
+  export interface ForumTag {
+    emoji: ForumEmoji | null;
+    id: string;
+    moderated: boolean;
+    name: string;
+  }
+
+  export interface ForumEmoji {
+    id: string | null;
+    name: string | null;
+  }
+
   // Modals
   interface ModalSubmitInteractionDataComponents {
     components: (Pick<TextInput, "custom_id" | "type"> & { value: string })[];
@@ -1888,8 +1917,8 @@ declare namespace Eris {
       GUILD_PUBLIC_THREAD:  11;
       GUILD_PRIVATE_THREAD: 12;
       GUILD_STAGE_VOICE:    13;
-      /** @deprecated */
-      GUILD_STAGE:          13;
+      GUILD_DIRECTORY:      14;
+      GUILD_FORUM:          15;
     };
     ComponentTypes: {
       ACTION_ROW:         1;
@@ -2231,6 +2260,10 @@ declare namespace Eris {
       ONLY_MENTIONS:  4;
       NO_MESSAGES:    8;
     };
+    ThreadSortOrders: {
+      LATEST_ACTIVITY: 0,
+      CREATION_DATE:   1
+    }
     TextInputStyles: {
       SHORT:     1;
       PARAGRAPH: 2;
