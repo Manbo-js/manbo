@@ -3818,10 +3818,7 @@ declare namespace Manbo {
     createThread(options: CreateGuildForumThreadOptions): Promise<PublicThreadChannel>;
     createwebhook(options: { name: string; avatar?: string | null }, reason): Promise<Object>;
     getInvites(): Promise<Array<Invite>>;
-    getJoinedPrivateArchivedThreads(options: GetArchivedThreadsOptions): Promise<Object>;
-    getPines(): Promise<Array<Message>>;
     getWebhooks(): Promise<Array<Object>>;
-    pinMessage(messageID: string): Promise<void>;   
   }
 
   export class ThreadChannel extends GuildChannel implements ThreadTextable {
