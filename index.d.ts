@@ -7,9 +7,9 @@ import { URL } from "url";
 import { Socket as DgramSocket } from "dgram";
 import * as WebSocket from "ws";
 
-declare function Eris(token: string, options?: Eris.ClientOptions): Eris.Client;
+declare function Manbo(token: string, options?: Manbo.ClientOptions): Manbo.Client;
 
-declare namespace Eris {
+declare namespace Manbo {
   export const Constants: Constants;
   export const VERSION: string;
 
@@ -1599,22 +1599,21 @@ declare namespace Eris {
   }
 
   export interface ForumThreadMessage {
-    allowed_mentions?: AllowedMentions;
+    allowedMentions?: AllowedMentions;
     attachments?: Attachment[];
     components?: ActionRow[];
     content?: string;
     embeds?: Embed[];
     flags?: number;
-    sticker_ids?: string[];
-    payload_json?: string;
+    stickerIDs?: string[];
   }
 
   interface CreateGuildForumThreadOptions {
     name: string;
-    auto_archive_duration?: number;
-    rate_limit_per_user?: number | null;
+    autoArchiveDuration?: number;
+    rateLimitPerUser?: number | null;
     message: ForumThreadMessage;
-    applied_tags?: string[];
+    appliedTags?: string[];
   }
 
   // Modals
