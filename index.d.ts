@@ -1598,21 +1598,13 @@ declare namespace Manbo {
     name: string | null;
   }
 
-  export interface ForumThreadMessage {
-    allowedMentions?: AllowedMentions;
-    attachments?: Attachment[];
-    components?: ActionRow[];
-    content?: string;
-    embeds?: Embed[];
-    flags?: number;
-    stickerIDs?: string[];
-  }
+  export interface GuildForumThreadMessage = Pick<AdvancedMessageContent, "allowedMentions" | "components" | "content" | "embed" | "embeds" | "flags" | "stickerIDs">;
 
-  interface CreateGuildForumThreadOptions {
+  export interface CreateGuildForumThreadOptions {
     name: string;
     autoArchiveDuration?: number;
     rateLimitPerUser?: number | null;
-    message: ForumThreadMessage;
+    message: GuildForumThreadMessage;
     appliedTags?: string[];
   }
 
@@ -4028,4 +4020,4 @@ declare namespace Manbo {
   }
 }
 
-export = Manbo;
+export = Eris;
