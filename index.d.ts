@@ -4028,4 +4028,4 @@ declare namespace Manbo {
   }
 }
 
-export = Eris;
+export = Manbo;
