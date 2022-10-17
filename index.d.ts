@@ -7,9 +7,9 @@ import { URL } from "url";
 import { Socket as DgramSocket } from "dgram";
 import * as WebSocket from "ws";
 
-declare function Eris(token: string, options?: Eris.ClientOptions): Eris.Client;
+declare function Manbo(token: string, options?: Manbo.ClientOptions): Manbo.Client;
 
-declare namespace Eris {
+declare namespace Manbo {
   export const Constants: Constants;
   export const VERSION: string;
 
@@ -345,13 +345,22 @@ declare namespace Eris {
     userLimit?: number;
   }
   interface EditChannelOptions extends Omit<CreateChannelOptions, "reason"> {
+    appliedTags?: Array<string>;
     archived?: boolean;
     autoArchiveDuration?: AutoArchiveDuration;
+    availableTags?: Array<Omit<ForumTag, "id"> & {
+      id?: string
+    }>
     defaultAutoArchiveDuration?: AutoArchiveDuration;
+    defaultReactionEmoji?: ForumEmoji | null;
+    defaultSortOrder?: Constants["ThreadSortOrders"];
+    defaultThreadRateLimitPerUser?: number;
+    flags?: number;
     invitable?: boolean;
     locked?: boolean;
     name?: string;
     rtcRegion?: string | null;
+    type?: Constants["ChannelTypes"]["GUILD_TEXT"] | Constants["ChannelTypes"]["GUILD_NEWS"];
     videoQualityMode?: VideoQualityMode;
   }
   interface EditChannelPositionOptions {
@@ -1568,6 +1577,37 @@ declare namespace Eris {
     locked: boolean;
   }
 
+  // Forum
+  export interface RawForumTag {
+    emoji_id: string | null;
+    emoji_name: string | null;
+    id: string;
+    moderated: boolean;
+    name: string;
+  }
+
+  export interface ForumTag {
+    emoji: ForumEmoji | null;
+    id: string;
+    moderated: boolean;
+    name: string;
+  }
+
+  export interface ForumEmoji {
+    id: string | null;
+    name: string | null;
+  }
+
+  export interface GuildForumThreadMessage = Pick<AdvancedMessageContent, "allowedMentions" | "components" | "content" | "embed" | "embeds" | "flags" | "stickerIDs">;
+
+  export interface CreateGuildForumThreadOptions {
+    name: string;
+    autoArchiveDuration?: number;
+    rateLimitPerUser?: number | null;
+    message: GuildForumThreadMessage;
+    appliedTags?: string[];
+  }
+
   // Modals
   interface ModalSubmitInteractionDataComponents {
     components: (Pick<TextInput, "custom_id" | "type"> & { value: string })[];
@@ -1888,8 +1928,8 @@ declare namespace Eris {
       GUILD_PUBLIC_THREAD:  11;
       GUILD_PRIVATE_THREAD: 12;
       GUILD_STAGE_VOICE:    13;
-      /** @deprecated */
-      GUILD_STAGE:          13;
+      GUILD_DIRECTORY:      14;
+      GUILD_FORUM:          15;
     };
     ComponentTypes: {
       ACTION_ROW:         1;
@@ -2231,6 +2271,10 @@ declare namespace Eris {
       ONLY_MENTIONS:  4;
       NO_MESSAGES:    8;
     };
+    ThreadSortOrders: {
+      LATEST_ACTIVITY: 0,
+      CREATION_DATE:   1
+    }
     TextInputStyles: {
       SHORT:     1;
       PARAGRAPH: 2;
@@ -2534,6 +2578,7 @@ declare namespace Eris {
     createGuild(name: string, options?: CreateGuildOptions): Promise<Guild>;
     createGuildCommand<T extends ApplicationCommandStructure>(guildID: string, command: T): Promise<ApplicationCommandStructureConversion<T, true>>;
     createGuildEmoji(guildID: string, options: EmojiOptions, reason?: string): Promise<Emoji>;
+    createGuildForumThread(channelID: string, options: CreateGuildForumThreadOptions): Promise<PublicThreadChannel>;
     createGuildFromTemplate(code: string, name: string, icon?: string): Promise<Guild>;
     createGuildScheduledEvent<T extends GuildScheduledEventEntityTypes>(guildID: string, event: GuildScheduledEventOptions<T>, reason?: string): Promise<GuildScheduledEvent<T>>;
     createGuildSticker(guildID: string, options: CreateStickerOptions, reason?: string): Promise<Sticker>;
@@ -3502,7 +3547,7 @@ declare namespace Eris {
   export class PublicThreadChannel extends ThreadChannel {
     type: GuildPublicThreadChannelTypes;
     edit(options: Pick<EditChannelOptions, "archived" | "autoArchiveDuration" | "locked" | "name" | "rateLimitPerUser">, reason?: string): Promise<this>;
-  }
+  }  
 
   export class RequestHandler implements SimpleJSON {
     globalBlock: boolean;
@@ -3754,6 +3799,26 @@ declare namespace Eris {
     removeMessageReactions(messageID: string): Promise<void>;
     sendTyping(): Promise<void>;
     unsendMessage(messageID: string): Promise<void>;
+  }
+  
+  export class ForumChannel extends GuildChannel {
+    availableTags: string[];
+    defaultAutoArchiveDuration?: number;
+    defaultReactionEmoji: Object | null;
+    defaultSortOrder: number | null;
+    defaultThreadRatelimitPerUser?: number;
+    flags: number;
+    lastThreadID: string | null;
+    nsfw?: boolean;
+    permissionOverwrites?: Collection<PermissionOverwrite>;
+    position?: number;
+    rateLimitPerUser: numer;
+    type: Constants["ChannelType"]["GUILD_FORUM"];
+    createInvite(options: CreateInviteOptions, reason: string): Promise<Invite>;
+    createThread(options: CreateGuildForumThreadOptions): Promise<PublicThreadChannel>;
+    createwebhook(options: { name: string; avatar?: string | null }, reason): Promise<Object>;
+    getInvites(): Promise<Array<Invite>>;
+    getWebhooks(): Promise<Array<Object>>;
   }
 
   export class ThreadChannel extends GuildChannel implements ThreadTextable {
