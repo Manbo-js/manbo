@@ -1116,7 +1116,7 @@ declare namespace Manbo {
     expireGracePeriod?: string;
   }
   interface MFALevelEditOptions {
-    mfaLevel: MFALevel;
+    level: MFALevel;
     reason?: string;
   }
   interface PruneMemberOptions extends GetPruneOptions {
@@ -2645,6 +2645,7 @@ declare namespace Manbo {
     ): Promise<Emoji>;
     editGuildIntegration(guildID: string, integrationID: string, options: IntegrationOptions): Promise<void>;
     editGuildMember(guildID: string, memberID: string, options: MemberOptions, reason?: string): Promise<Member>;
+    editGuildMFALevel(guildID: string, options: MFALevelEditOptions): Promise<Number>;
     editGuildScheduledEvent<T extends GuildScheduledEventEntityTypes>(guildID: string, eventID: string, event: GuildScheduledEventEditOptions<T>, reason?: string): Promise<GuildScheduledEvent<T>>;
     editGuildSticker(guildID: string, stickerID: string, options?: EditStickerOptions, reason?: string): Promise<Sticker>;
     editGuildTemplate(guildID: string, code: string, options: GuildTemplateOptions): Promise<GuildTemplate>;
