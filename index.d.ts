@@ -1598,7 +1598,7 @@ declare namespace Manbo {
     name: string | null;
   }
 
-  export interface GuildForumThreadMessage = Pick<AdvancedMessageContent, "allowedMentions" | "components" | "content" | "embed" | "embeds" | "flags" | "stickerIDs">;
+  export type GuildForumThreadMessage = Pick<AdvancedMessageContent, "allowedMentions" | "components" | "content" | "embed" | "embeds" | "flags" | "stickerIDs">;
 
   export interface CreateGuildForumThreadOptions {
     name: string;
