@@ -1115,6 +1115,10 @@ declare namespace Manbo {
     expireBehavior?: string;
     expireGracePeriod?: string;
   }
+  interface MFALevelEditOptions {
+    mfaLevel: MFALevel;
+    reason?: string;
+  }
   interface PruneMemberOptions extends GetPruneOptions {
     computePruneCount?: boolean;
     reason?: string;
@@ -3018,6 +3022,7 @@ declare namespace Manbo {
     editEmoji(emojiID: string, options: { name: string; roles?: string[] }, reason?: string): Promise<Emoji>;
     editIntegration(integrationID: string, options: IntegrationOptions): Promise<void>;
     editMember(memberID: string, options: MemberOptions, reason?: string): Promise<Member>;
+    editMFALevel(options: MFALevelEditOptions): Promise<Number>;
     /** @deprecated */
     editNickname(nick: string): Promise<void>;
     editRole(roleID: string, options: RoleOptions): Promise<Role>;
