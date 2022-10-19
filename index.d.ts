@@ -76,6 +76,7 @@ declare namespace Manbo {
   type TextableChannel = (GuildTextable & GuildTextableChannel) | (ThreadTextable & AnyThreadChannel) | (Textable & PrivateChannel);
   type VideoQualityMode = Constants["VideoQualityModes"][keyof Constants["VideoQualityModes"]];
   type ChannelTypes = GuildChannelTypes | PrivateChannelTypes;
+  type GuildForumChannelTypes = Constants["ChannelTypes"][keyof Pick<Constants["ChannelTypes"], "GUILD_FORUM">];
   type GuildChannelTypes = Exclude<Constants["ChannelTypes"][keyof Constants["ChannelTypes"]], PrivateChannelTypes>;
   type TextChannelTypes = GuildTextChannelTypes | PrivateChannelTypes;
   type GuildTextChannelTypes = Constants["ChannelTypes"][keyof Pick<Constants["ChannelTypes"], "GUILD_TEXT" | "GUILD_NEWS">];
@@ -345,23 +346,23 @@ declare namespace Manbo {
     userLimit?: number;
   }
   interface EditChannelOptions extends Omit<CreateChannelOptions, "reason"> {
-    appliedTags?: Array<string>;
+    name?: string;
+    appliedTags?: string[];
     archived?: boolean;
-    autoArchiveDuration?: AutoArchiveDuration;
+    autoArchiveDuration?: number;
     availableTags?: Array<Omit<ForumTag, "id"> & {
-      id?: string
-    }>
-    defaultAutoArchiveDuration?: AutoArchiveDuration;
+      id?: string;
+    }>;
+    defaultAutoArchiveDuration?: number | null;
     defaultReactionEmoji?: ForumEmoji | null;
     defaultSortOrder?: Constants["ThreadSortOrders"];
     defaultThreadRateLimitPerUser?: number;
     flags?: number;
     invitable?: boolean;
     locked?: boolean;
-    name?: string;
+    nsfw?: boolean;
     rtcRegion?: string | null;
-    type?: Constants["ChannelTypes"]["GUILD_TEXT"] | Constants["ChannelTypes"]["GUILD_NEWS"];
-    videoQualityMode?: VideoQualityMode;
+    videoQualityMode?: VideoQualityMode | null;
   }
   interface EditChannelPositionOptions {
     lockPermissions?: string;
@@ -3809,14 +3810,11 @@ declare namespace Manbo {
     defaultThreadRatelimitPerUser?: number;
     flags: number;
     lastThreadID: string | null;
-    nsfw?: boolean;
-    permissionOverwrites?: Collection<PermissionOverwrite>;
-    position?: number;
-    rateLimitPerUser: numer;
-    type: Constants["ChannelType"]["GUILD_FORUM"];
+    rateLimitPerUser: number;
+    type: GuildForumChannelTypes;
     createInvite(options: CreateInviteOptions, reason: string): Promise<Invite>;
     createThread(options: CreateGuildForumThreadOptions): Promise<PublicThreadChannel>;
-    createwebhook(options: { name: string; avatar?: string | null }, reason): Promise<Object>;
+    createWebhook(options: { name: string; avatar?: string | null }, reason: string): Promise<Object>;
     getInvites(): Promise<Array<Invite>>;
     getWebhooks(): Promise<Array<Object>>;
   }
@@ -4017,4 +4015,4 @@ declare namespace Manbo {
   }
 }
 
-export = Eris;
+export = Manbo;
