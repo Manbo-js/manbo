@@ -710,7 +710,7 @@ declare namespace Manbo {
     channel: PossiblyUncachedSpeakableChannel | null;
     description?: string | null;
     entityID: string | null;
-    enitityMetadata: GuildScheduledEventMetadata | null;
+    entityMetadata: GuildScheduledEventMetadata | null;
     entityType: GuildScheduledEventEntityTypes;
     image?: string;
     name: string;
@@ -1069,7 +1069,7 @@ declare namespace Manbo {
   }
   interface GuildScheduledEventEditOptionsExternal extends GuildScheduledEventEditOptionsBase<Constants["GuildScheduledEventEntityTypes"]["EXTERNAL"]> {
     channelID: null;
-    enitityMetadata: Required<GuildScheduledEventMetadata>;
+    entityMetadata: Required<GuildScheduledEventMetadata>;
     scheduledEndTime: Date;
   }
   interface GuildScheduledEventOptionsBase<T extends GuildScheduledEventEntityTypes> extends Omit<GuildScheduledEventEditOptionsBase<T>, "entityMetadata" | "status"> {
@@ -1086,7 +1086,7 @@ declare namespace Manbo {
   }
   interface GuildScheduledEventOptionsExternal extends GuildScheduledEventOptionsBase<Constants["GuildScheduledEventEntityTypes"]["EXTERNAL"]> {
     channelID: never;
-    enitityMetadata: Required<GuildScheduledEventMetadata>;
+    entityMetadata: Required<GuildScheduledEventMetadata>;
     scheduledEndTime: Date;
   }
   interface GuildScheduledEventUser {
@@ -3547,7 +3547,7 @@ declare namespace Manbo {
   export class PublicThreadChannel extends ThreadChannel {
     type: GuildPublicThreadChannelTypes;
     edit(options: Pick<EditChannelOptions, "archived" | "autoArchiveDuration" | "locked" | "name" | "rateLimitPerUser">, reason?: string): Promise<this>;
-  }  
+  }
 
   export class RequestHandler implements SimpleJSON {
     globalBlock: boolean;
@@ -3800,7 +3800,7 @@ declare namespace Manbo {
     sendTyping(): Promise<void>;
     unsendMessage(messageID: string): Promise<void>;
   }
-  
+
   export class ForumChannel extends GuildChannel {
     availableTags: string[];
     defaultAutoArchiveDuration?: number;
