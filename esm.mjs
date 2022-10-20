@@ -1,7 +1,7 @@
-import Eris from "./index.js";
+import Manbo from "./index.js";
 
 export default function(token, options) {
-  return new Eris.Client(token, options);
+  return new Manbo.Client(token, options);
 }
 
 export const {
@@ -22,6 +22,7 @@ export const {
   DiscordHTTPError,
   DiscordRESTError,
   ExtendedUser,
+  ForumChannel,
   Guild,
   GuildChannel,
   GuildIntegration,
@@ -60,4 +61,4 @@ export const {
   VoiceConnection,
   VoiceConnectionManager,
   VoiceState
-} = Eris;
+} = Manbo;
