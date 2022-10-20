@@ -1,6 +1,6 @@
 {
   "name": "manbo",
-  "version": "0.0.2",
+  "version": "0.0.3-alpha",
   "description": "Manbo, a forked package of eris. A javascript wrapper for the Discord API.",
   "main": "./index.js",
   "exports": {

@@ -42,9 +42,9 @@ declare namespace Manbo {
   type ApplicationCommandOptionsWithValue = ApplicationCommandOptionsString | ApplicationCommandOptionsInteger | ApplicationCommandOptionsBoolean | ApplicationCommandOptionsUser | ApplicationCommandOptionsChannel | ApplicationCommandOptionsRole | ApplicationCommandOptionsMentionable | ApplicationCommandOptionsNumber | ApplicationCommandOptionsAttachment;
   type ApplicationCommandStructure = ChatInputApplicationCommandStructure | MessageApplicationCommandStructure | UserApplicationCommandStructure;
   type ApplicationCommandStructureConversion<T extends ApplicationCommandStructure, W extends boolean = false> = T extends ChatInputApplicationCommandStructure ?
-    ChatInputApplicationCommand<W> : T extends MessageApplicationCommandStructure ?
-      MessageApplicationCommand<W> : T extends UserApplicationCommandStructure ?
-        UserApplicationCommand<W> : never;
+      ChatInputApplicationCommand<W> : T extends MessageApplicationCommandStructure ?
+          MessageApplicationCommand<W> : T extends UserApplicationCommandStructure ?
+              UserApplicationCommand<W> : never;
   type ApplicationCommandTypes = Constants["ApplicationCommandTypes"][keyof Constants["ApplicationCommandTypes"]];
   type ChatInputApplicationCommand<W extends boolean = false> = ApplicationCommand<"CHAT_INPUT", W>;
   type MessageApplicationCommand<W extends boolean = false> = ApplicationCommand<"MESSAGE", W>;
@@ -228,9 +228,9 @@ declare namespace Manbo {
   interface ApplicationCommandOptionsChoice<T extends ApplicationCommandOptionsTypesWithChoices = ApplicationCommandOptionsTypesWithChoices> {
     name: string;
     value:
-    T extends Constants["ApplicationCommandOptionTypes"]["STRING"] ? string :
-      T extends Constants["ApplicationCommandOptionTypes"]["INTEGER" | "NUMBER"] ? number :
-        unknown;
+        T extends Constants["ApplicationCommandOptionTypes"]["STRING"] ? string :
+            T extends Constants["ApplicationCommandOptionTypes"]["INTEGER" | "NUMBER"] ? number :
+                unknown;
   }
 
   interface ApplicationCommandOptionsChannelTypes {
@@ -849,7 +849,7 @@ declare namespace Manbo {
     threadMemberUpdate: [channel: AnyThreadChannel, member: ThreadMember, oldMember: OldThreadMember];
     threadUpdate: [channel: AnyThreadChannel, oldChannel: OldThread | null];
     typingStart: [channel: GuildTextableChannel | Uncached, user: User | Uncached, member: Member]
-    | [channel: PrivateChannel | Uncached, user: User | Uncached, member: null];
+        | [channel: PrivateChannel | Uncached, user: User | Uncached, member: null];
     unavailableGuildCreate: [guild: UnavailableGuild];
     unknown: [packet: RawPacket, id?: number];
     userUpdate: [user: User, oldUser: PartialUser | null];
@@ -2037,9 +2037,9 @@ declare namespace Manbo {
       AGE_RESTRICTED: 3;
     };
     HubTypes: {
-    DEFAULT:     0;
-    HIGH_SCHOOL: 1;
-    COLLEGE:     2;
+      DEFAULT:     0;
+      HIGH_SCHOOL: 1;
+      COLLEGE:     2;
     };
     ImageFormats: [
       "jpg",
@@ -2468,112 +2468,112 @@ declare namespace Manbo {
     createAutoModerationRule(guildID: string, rule: CreateAutoModerationRuleOptions): Promise<AutoModerationRule>;
     createChannel(guildID: string, name: string): Promise<TextChannel>;
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_TEXT"],
-      options?: CreateChannelOptions
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_TEXT"],
+        options?: CreateChannelOptions
     ): Promise<TextChannel>;
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_VOICE"],
-      options?: CreateChannelOptions
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_VOICE"],
+        options?: CreateChannelOptions
     ): Promise<TextVoiceChannel>;
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_CATEGORY"],
-      options?: CreateChannelOptions
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_CATEGORY"],
+        options?: CreateChannelOptions
     ): Promise<CategoryChannel>;
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_NEWS"],
-      options?: CreateChannelOptions
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_NEWS"],
+        options?: CreateChannelOptions
     ): Promise<NewsChannel>;
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_STORE"],
-      options?: CreateChannelOptions
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_STORE"],
+        options?: CreateChannelOptions
     ): Promise<StoreChannel>;
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_STAGE_VOICE"],
-      options?: CreateChannelOptions
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_STAGE_VOICE"],
+        options?: CreateChannelOptions
     ): Promise<StageChannel>;
     createChannel(
-      guildID: string,
-      name: string,
-      type?: number,
-      options?: CreateChannelOptions
+        guildID: string,
+        name: string,
+        type?: number,
+        options?: CreateChannelOptions
     ): Promise<unknown>;
     /** @deprecated */
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_TEXT"],
-      reason?: string,
-      options?: CreateChannelOptions | string
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_TEXT"],
+        reason?: string,
+        options?: CreateChannelOptions | string
     ): Promise<TextChannel>;
     /** @deprecated */
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_VOICE"],
-      reason?: string,
-      options?: CreateChannelOptions | string
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_VOICE"],
+        reason?: string,
+        options?: CreateChannelOptions | string
     ): Promise<TextVoiceChannel>;
     /** @deprecated */
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_CATEGORY"],
-      reason?: string,
-      options?: CreateChannelOptions | string
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_CATEGORY"],
+        reason?: string,
+        options?: CreateChannelOptions | string
     ): Promise<CategoryChannel>;
     /** @deprecated */
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_NEWS"],
-      reason?: string,
-      options?: CreateChannelOptions | string
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_NEWS"],
+        reason?: string,
+        options?: CreateChannelOptions | string
     ): Promise<NewsChannel>;
     /** @deprecated */
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_STORE"],
-      reason?: string,
-      options?: CreateChannelOptions | string
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_STORE"],
+        reason?: string,
+        options?: CreateChannelOptions | string
     ): Promise<StoreChannel>;
     /** @deprecated */
     createChannel(
-      guildID: string,
-      name: string,
-      type: Constants["ChannelTypes"]["GUILD_STAGE_VOICE"],
-      reason?: string,
-      options?: CreateChannelOptions | string
+        guildID: string,
+        name: string,
+        type: Constants["ChannelTypes"]["GUILD_STAGE_VOICE"],
+        reason?: string,
+        options?: CreateChannelOptions | string
     ): Promise<StageChannel>;
     /** @deprecated */
     createChannel(
-      guildID: string,
-      name: string,
-      type?: number,
-      reason?: string,
-      options?: CreateChannelOptions | string
+        guildID: string,
+        name: string,
+        type?: number,
+        reason?: string,
+        options?: CreateChannelOptions | string
     ): Promise<unknown>;
     createChannelInvite(
-      channelID: string,
-      options?: CreateChannelInviteOptions,
-      reason?: string
+        channelID: string,
+        options?: CreateChannelInviteOptions,
+        reason?: string
     ): Promise<Invite<"withoutCount">>;
     createChannelWebhook(
-      channelID: string,
-      options: { name: string; avatar?: string | null },
-      reason?: string
+        channelID: string,
+        options: { name: string; avatar?: string | null },
+        reason?: string
     ): Promise<Webhook>;
     createCommand<T extends ApplicationCommandStructure>(command: T): Promise<ApplicationCommandStructureConversion<T, true>>;
     createGuild(name: string, options?: CreateGuildOptions): Promise<Guild>;
@@ -2615,17 +2615,17 @@ declare namespace Manbo {
     editAFK(afk: boolean): void;
     editAutoModerationRule(guildID: string, ruleID: string, options: EditAutoModerationRuleOptions): Promise<AutoModerationRule>;
     editChannel(
-      channelID: string,
-      options: EditChannelOptions,
-      reason?: string
+        channelID: string,
+        options: EditChannelOptions,
+        reason?: string
     ): Promise<AnyGuildChannel>;
     editChannelPermission(
-      channelID: string,
-      overwriteID: string,
-      allow: bigint | number,
-      deny: bigint | number,
-      type: PermissionType,
-      reason?: string
+        channelID: string,
+        overwriteID: string,
+        allow: bigint | number,
+        deny: bigint | number,
+        type: PermissionType,
+        reason?: string
     ): Promise<void>;
     editChannelPosition(channelID: string, position: number, options?: EditChannelPositionOptions): Promise<void>;
     editChannelPositions(guildID: string, channelPositions: ChannelPosition[]): Promise<void>;
@@ -2635,10 +2635,10 @@ declare namespace Manbo {
     editGuildCommand<T extends ApplicationCommandStructure>(guildID: string, commandID: string, command: Omit<T, "type">): Promise<ApplicationCommandStructureConversion<T, true>>;
     editGuildDiscovery(guildID: string, options?: DiscoveryOptions): Promise<DiscoveryMetadata>;
     editGuildEmoji(
-      guildID: string,
-      emojiID: string,
-      options: { name?: string; roles?: string[] },
-      reason?: string
+        guildID: string,
+        emojiID: string,
+        options: { name?: string; roles?: string[] },
+        reason?: string
     ): Promise<Emoji>;
     editGuildIntegration(guildID: string, integrationID: string, options: IntegrationOptions): Promise<void>;
     editGuildMember(guildID: string, memberID: string, options: MemberOptions, reason?: string): Promise<Member>;
@@ -2659,16 +2659,16 @@ declare namespace Manbo {
     editStatus(status: SelfStatus, activities?: ActivityPartial<BotActivityType>[] | ActivityPartial<BotActivityType>): void;
     editStatus(activities?: ActivityPartial<BotActivityType>[] | ActivityPartial<BotActivityType>): void;
     editWebhook(
-      webhookID: string,
-      options: WebhookOptions,
-      token?: string,
-      reason?: string
+        webhookID: string,
+        options: WebhookOptions,
+        token?: string,
+        reason?: string
     ): Promise<Webhook>;
     editWebhookMessage(
-      webhookID: string,
-      token: string,
-      messageID: string,
-      options: MessageWebhookContent
+        webhookID: string,
+        token: string,
+        messageID: string,
+        options: MessageWebhookContent
     ): Promise<Message<GuildTextableChannel>>;
     emit<K extends keyof ClientEvents>(event: K, ...args: ClientEvents[K]): boolean;
     emit(event: string, ...args: any[]): boolean;
@@ -2768,12 +2768,12 @@ declare namespace Manbo {
     purgeChannel(channelID: string, options: PurgeChannelOptions): Promise<number>;
     /** @deprecated */
     purgeChannel(
-      channelID: string,
-      limit?: number,
-      filter?: (m: Message<GuildTextableChannel>) => boolean,
-      before?: string,
-      after?: string,
-      reason?: string
+        channelID: string,
+        limit?: number,
+        filter?: (m: Message<GuildTextableChannel>) => boolean,
+        before?: string,
+        after?: string,
+        reason?: string
     ): Promise<number>;
     removeGuildMemberRole(guildID: string, memberID: string, roleID: string, reason?: string): Promise<void>;
     removeMessageReaction(channelID: string, messageID: string, reaction: string, userID?: string): Promise<void>;
@@ -3113,11 +3113,11 @@ declare namespace Manbo {
     deletePermission(overwriteID: string, reason?: string): Promise<void>;
     edit(options: Omit<EditChannelOptions, "icon" | "ownerID">, reason?: string): Promise<this>;
     editPermission(
-      overwriteID: string,
-      allow: bigint | number,
-      deny: bigint | number,
-      type: PermissionType,
-      reason?: string
+        overwriteID: string,
+        allow: bigint | number,
+        deny: bigint | number,
+        type: PermissionType,
+        reason?: string
     ): Promise<PermissionOverwrite>;
     editPosition(position: number, options?: EditChannelPositionOptions): Promise<void>;
     getInvites(): Promise<Invite[]>;
@@ -3341,10 +3341,10 @@ declare namespace Manbo {
     // @ts-ignore: Property is only not null when invite metadata is supplied
     createdAt: CT extends "withMetadata" ? number : null;
     guild: CT extends "withMetadata"
-      ? Guild // Invite with Metadata always has guild prop
-      : CH extends Exclude<InviteChannel, InvitePartialChannel> // Invite without Metadata
-        ? Guild // If the invite channel is not partial
-        : Guild | undefined; // If the invite channel is partial
+        ? Guild // Invite with Metadata always has guild prop
+        : CH extends Exclude<InviteChannel, InvitePartialChannel> // Invite without Metadata
+            ? Guild // If the invite channel is not partial
+            : Guild | undefined; // If the invite channel is partial
     inviter?: User;
     maxAge: CT extends "withMetadata" ? number : null;
     maxUses: CT extends "withMetadata" ? number : null;
