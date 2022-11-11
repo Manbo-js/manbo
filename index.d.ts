@@ -512,6 +512,7 @@ declare namespace Manbo {
     disableLatencyCompensation?: boolean;
     domain?: string;
     https?: boolean;
+    port?: number;
     latencyThreshold?: number;
     ratelimiterOffset?: number;
     requestTimeout?: number;
