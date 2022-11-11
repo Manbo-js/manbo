@@ -1812,6 +1812,7 @@ declare namespace Manbo {
       GATEWAY_MESSAGE_CONTENT:          262144;
       GATEWAY_MESSAGE_CONTENT_LIMITED:  524288;
       EMBEDDED_FIRST_PARTY:             1048576;
+      APPLICATION_COMMAND_BADGE:        8388608;
     };
     AuditLogActions: {
       GUILD_UPDATE: 1;
