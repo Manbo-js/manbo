@@ -1116,6 +1116,10 @@ declare namespace Manbo {
     expireBehavior?: string;
     expireGracePeriod?: string;
   }
+  interface MFALevelEditOptions {
+    level: MFALevel;
+    reason?: string;
+  }
   interface PruneMemberOptions extends GetPruneOptions {
     computePruneCount?: boolean;
     reason?: string;
@@ -2645,6 +2649,7 @@ declare namespace Manbo {
     ): Promise<Emoji>;
     editGuildIntegration(guildID: string, integrationID: string, options: IntegrationOptions): Promise<void>;
     editGuildMember(guildID: string, memberID: string, options: MemberOptions, reason?: string): Promise<Member>;
+    editGuildMFALevel(guildID: string, options: MFALevelEditOptions): Promise<Number>;
     editGuildScheduledEvent<T extends GuildScheduledEventEntityTypes>(guildID: string, eventID: string, event: GuildScheduledEventEditOptions<T>, reason?: string): Promise<GuildScheduledEvent<T>>;
     editGuildSticker(guildID: string, stickerID: string, options?: EditStickerOptions, reason?: string): Promise<Sticker>;
     editGuildTemplate(guildID: string, code: string, options: GuildTemplateOptions): Promise<GuildTemplate>;
@@ -3022,6 +3027,7 @@ declare namespace Manbo {
     editEmoji(emojiID: string, options: { name: string; roles?: string[] }, reason?: string): Promise<Emoji>;
     editIntegration(integrationID: string, options: IntegrationOptions): Promise<void>;
     editMember(memberID: string, options: MemberOptions, reason?: string): Promise<Member>;
+    editMFALevel(options: MFALevelEditOptions): Promise<Number>;
     /** @deprecated */
     editNickname(nick: string): Promise<void>;
     editRole(roleID: string, options: RoleOptions): Promise<Role>;
