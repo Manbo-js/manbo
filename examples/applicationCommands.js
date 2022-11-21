@@ -81,16 +81,16 @@ bot.on("interactionCreate", (interaction) => {
     if(interaction instanceof Eris.CommandInteraction) {
         switch(interaction.data.name) {
             case "test_edit_command":
-                interaction.createMessage("interaction recieved");
+                interaction.createMessage("interaction received");
                 return bot.editCommand(interaction.data.id, {
                     name: "edited_test_command",
                     description: "Test command that was edited by running test_edit_command"
                 });
             case "test_delete_command":
-                interaction.createMessage("interaction recieved");
+                interaction.createMessage("interaction received");
                 return bot.deleteCommand(interaction.data.id);
             default: {
-                return interaction.createMessage("interaction recieved");
+                return interaction.createMessage("interaction received");
             }
         }
     }
